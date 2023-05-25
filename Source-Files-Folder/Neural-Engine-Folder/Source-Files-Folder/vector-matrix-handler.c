@@ -37,6 +37,8 @@ float*** create_fmatrix_array(int amount, int height, int width)
   return matrixArray;
 }
 
+void free_float_vector(float* vector, int length) {free(vector);}
+
 void free_float_matrix(float** matrix, int height, int width)
 {
   for(int index = 0; index < height; index += 1)
@@ -53,6 +55,15 @@ void free_fmatrix_array(float*** matrixArray, int amount, int height, int width)
     free_float_matrix(matrixArray[index], height, width);
   }
   free(matrixArray);
+}
+
+float*** fill_fmatarr_random(float*** matrixArray, int amount, int height, int width, float minimum, float maximum)
+{
+  for(int index = 0; index < amount; index += 1)
+  {
+    fill_fmatrix_random(matrixArray[index], height, width, minimum, maximum);
+  }
+  return matrixArray;
 }
 
 float** fill_fmatrix_random(float** matrix, int height, int width, float minimum, float maximum)
@@ -275,6 +286,20 @@ float* fvector_elem_action(float* result, float* vector, int length, float (*flo
   return result;
 }
 
+float* duplic_float_vector(float* vector, int length)
+{
+  float* duplic = create_float_vector(length);
+
+  return copy_float_vector(duplic, vector, length);
+}
+
+float** duplic_float_matrix(float** matrix, int height, int width)
+{
+  float** duplic = create_float_matrix(height, width);
+
+  return copy_float_matrix(duplic, matrix, height, width);
+}
+
 float** copy_float_matrix(float** destin, float** matrix, int height, int width)
 {
   for(int hIndex = 0; hIndex < height; hIndex += 1)
@@ -296,7 +321,7 @@ float* copy_float_vector(float* destin, float* vector, int length)
   return destin;
 }
 
-float vector_maximum_float(const float vector[], int length)
+float vector_maximum_float(float* vector, int length)
 {
   float maxValue = 0;
   for(int index = 0; index < length; index += 1)
@@ -306,7 +331,7 @@ float vector_maximum_float(const float vector[], int length)
   return maxValue;
 }
 
-float float_vector_total(const float vector[], int length)
+float float_vector_total(float* vector, int length)
 {
   float vecTotal = 0;
   for(int index = 0; index < length; index += 1)
@@ -329,10 +354,15 @@ void print_float_matrix(float** matrix, int height, int width)
 {
   for(int hIndex = 0; hIndex < height; hIndex += 1)
   {
-    for(int wIndex = 0; wIndex < width; wIndex += 1)
-    {
-      printf("%+04.8f ", matrix[hIndex][wIndex]);
-    }
-    printf("\n");
+    print_float_vector(matrix[hIndex], width);
   }
+}
+
+void print_float_vector(float* vector, int length)
+{
+  for(int index = 0; index < length; index += 1)
+  {
+    printf("%+04.8f ", vector[index]);
+  }
+  printf("\n");
 }

@@ -10,5 +10,8 @@
 #include <string.h>
 
 #include "vector-matrix-handler.h"
+#include "neural-activate-funcs.h"
+#include "neural-network-handler.h"
+#include "neural-network-actions.h"
 
 #endif

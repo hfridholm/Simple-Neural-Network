@@ -10,9 +10,13 @@ float** create_float_matrix(int height, int width);
 
 float*** create_fmatrix_array(int amount, int height, int width);
 
+void free_float_vector(float* vector, int length);
+
 void free_float_matrix(float** matrix, int height, int width);
 
 void free_fmatrix_array(float*** matrixArray, int amount, int height, int width);
+
+float*** fill_fmatarr_random(float*** matrixArray, int amount, int height, int width, float minimum, float maximum);
 
 float** fill_fmatrix_random(float** matrix, int height, int width, float minimum, float maximum);
 
@@ -58,12 +62,18 @@ float** copy_float_matrix(float** destin, float** matrix, int height, int width)
 
 float* copy_float_vector(float* destin, float* vector, int length);
 
-float vector_maximum_float(const float vector[], int length);
+float** duplic_float_matrix(float** matrix, int height, int width);
 
-float float_vector_total(const float vector[], int length);
+float* duplic_float_vector(float* vector, int length);
+
+float vector_maximum_float(float* vector, int length);
+
+float float_vector_total(float* vector, int length);
 
 void print_fmatrix_array(float*** matrixArray, int amount, int height, int width);
 
 void print_float_matrix(float** matrix, int height, int width);
+
+void print_float_vector(float* vector, int length);
 
 #endif
